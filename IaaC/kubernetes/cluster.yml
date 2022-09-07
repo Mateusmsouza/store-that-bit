@@ -1,0 +1,16 @@
+apiVersion: k3d.io/v1alpha4
+kind: Simple
+image: rancher/k3s:v1.20.4-k3s1
+metadata:
+  name: store-that-bit
+servers: 1
+agents: 2
+ports:
+  - port: 8000:8000
+    nodeFilters:
+      - loadbalancer
+registries:
+  create:
+    name: store-that-bit-images
+    host: '0.0.0.0'
+    hostPort: '5000'
