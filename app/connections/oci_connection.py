@@ -15,7 +15,7 @@ class OciConnection:
             "key_file": app_settings.oci_keyfile_path,
             "fingerprint": app_settings.oci_fingerprint,
             "tenancy": app_settings.oci_tenancy,
-            "region": app_settings.oci_tenancy
+            "region": app_settings.oci_region
         }
 
         validate_config(self.config)
