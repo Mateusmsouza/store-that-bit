@@ -2,9 +2,10 @@ import logging
 
 from oci.config import validate_config
 from oci.object_storage import ObjectStorageClient
-from oci.object_storage.models import CopyObjectDetails
 
 from settings import app_settings
+
+LOGGER = logging.getLogger(app_settings.app_logger_name)
 
 
 class OciConnection:
@@ -19,14 +20,14 @@ class OciConnection:
         }
 
         validate_config(self.config)
-        logging.debug('config OCI validated')
+        LOGGER.debug('config OCI validated')
     
-    def upload(self, file):
+    def upload(self, file, file_name: str):
         object_storage = ObjectStorageClient(self.config)
-        CopyObjectDetails()
         object_storage.put_object(
             bucket_name=app_settings.oci_bucket_name,
             namespace_name=app_settings.oci_bucket_namespace,
-            object_name='teste',
+            object_name=file_name,
             put_object_body=file
         )
+        LOGGER.debug('file uploaded')
