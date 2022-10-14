@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: store-that-bit-backend
+  labels:
+    app: store-that-bit
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: store-that-bit
+  template:
+    metadata:
+      labels:
+        app: store-that-bit
+    spec:
+      containers:
+        - name: store-that-bit
+          image: store-that-bit:latest
+          imagePullPolicy: Never
+          ports:
+          - containerPort: 8000
