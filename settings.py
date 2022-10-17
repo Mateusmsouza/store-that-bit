@@ -12,6 +12,12 @@ class Settings(BaseSettings):
     oci_bucket_namespace: str
     oci_bucket_name: str
 
+    #oci_database_user: str
+    #oci_database_password: str
+    #oci_encoding: str
+    oci_database_connection_string: str
+
+
     app_is_debug: bool = True
     app_logger_name: str = 'sLogger'
     server_host: str = '0.0.0.0'

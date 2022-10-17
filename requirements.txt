@@ -4,3 +4,4 @@ uvicorn>=0.18.3
 oci>=2.83.0
 python-multipart>=0.0.5
 pydantic[dotenv]>=1.10.2
+mongoengine==0.24.2
