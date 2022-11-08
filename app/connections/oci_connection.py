@@ -13,7 +13,7 @@ class OciConnection:
     def __init__(self) -> None:
         self.config = {
             "user": app_settings.oci_user_ocid,
-            "key_file": app_settings.oci_keyfile_path,
+            "key_content": app_settings.oci_keycontent,
             "fingerprint": app_settings.oci_fingerprint,
             "tenancy": app_settings.oci_tenancy,
             "region": app_settings.oci_region
