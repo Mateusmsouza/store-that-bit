@@ -8,8 +8,11 @@ settup-cluster:
 destroy-cluster:
 	k3d cluster delete --config IaaC/kubernetes/cluster.yml
 
+build-image:
+	docker build . -f IaaC/docker/Dockerfile.prod -t store-that-bit --no-cache
+
 dev-environment:
-	docker build . -f IaaC/docker/Dockerfile.dev -t store-that-bit --no-cache
+	docker build . -f IaaC/docker/Dockerfile.dev -t store-that-bit-dev --no-cache
 	docker run -d -p 8000:8000 store-that-bit
 
 dev-watch:
