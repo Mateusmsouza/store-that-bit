@@ -12,8 +12,7 @@ build-image:
 	docker build . -f IaaC/docker/Dockerfile.prod -t store-that-bit --no-cache
 
 dev-environment:
-	docker build . -f IaaC/docker/Dockerfile.dev -t store-that-bit-dev --no-cache
-	docker run -d -p 8000:8000 store-that-bit
+	docker-compose -f docker-compose.dev.yml up --build -d
 
 dev-watch:
 	docker logs store-that-bit

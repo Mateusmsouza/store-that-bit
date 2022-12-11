@@ -21,7 +21,7 @@ class Settings(BaseSettings):
     app_is_debug: bool = True
     app_logger_name: str = 'sLogger'
     server_host: str = '0.0.0.0'
-    server_port: int = 8080
+    server_port: int = 8000
 
     class Config:
         env_file = '.env'

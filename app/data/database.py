@@ -16,10 +16,14 @@ class Database:
 
     def save_file(self, filename, url):
         file_saved = FileStored(
-            file_name=filename,
+            filename=filename,
             file_url=url,
             created_at=datetime.now(),
             live_until=datetime.now() + timedelta(hours=app_settings.default_hours)
         )
         file_saved.save()
         return file_saved
+    
+    def get_file_url(self, filename: str) -> FileStored:
+        file: FileStored = FileStored.objects.get(filename=filename)
+        return file

@@ -1,7 +1,8 @@
 import logging
 import traceback
 
-from fastapi import APIRouter, File, UploadFile
+from fastapi import APIRouter, File, UploadFile, HTTPException
+from mongoengine import DoesNotExist
 
 from app.services.storage_service import StorageService
 from settings import app_settings
@@ -21,4 +22,18 @@ async def update_file(file_upload: UploadFile = File()):
             "file_size": len(file)
         }
     except Exception:
-        print(traceback.format_exc())
+        LOGGER.critical(traceback.format_exc())
+
+@FILE_ROUTER.get('/api/file', tags=['files'])
+async def get_file(filename: str):
+    try:
+        LOGGER.info('getting file url')
+        return {
+            'url': StorageService().get_file(filename=filename)
+        }
+    except DoesNotExist:
+        LOGGER.debug('file not found')
+        raise HTTPException(status_code=404)
+
+    except Exception:
+        LOGGER.critical(traceback.format_exc())
