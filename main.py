@@ -4,6 +4,7 @@ from logging.config import fileConfig
 import uvicorn
 from settings import app_settings
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.routers.files import FILE_ROUTER
 
@@ -14,6 +15,16 @@ LOGGER = logging.getLogger(app_settings.app_logger_name)
 
 app = FastAPI()
 app.include_router(FILE_ROUTER)
+
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 def settup_logging():
     if app_settings.app_is_debug:
