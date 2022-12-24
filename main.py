@@ -7,6 +7,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.routers.files import FILE_ROUTER
+from fastapi.staticfiles import StaticFiles
 
 
 DEBUG_FILE_CONFIG = 'config/logging_debug.ini'
@@ -15,6 +16,7 @@ LOGGER = logging.getLogger(app_settings.app_logger_name)
 
 app = FastAPI()
 app.include_router(FILE_ROUTER)
+app.mount("/.well-known/pki-validation/", StaticFiles(directory="static"), name="static")
 
 origins = ["*"]
 app.add_middleware(
