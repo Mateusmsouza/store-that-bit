@@ -1,18 +1,5 @@
 version: '3'
 services:
-  app:
-    container_name: "store-that-bit-dev"
-    build:
-      context: .
-      dockerfile: IaaC/docker/Dockerfile.dev
-
-    ports:
-      - "8000:8000"
-    env_file:
-      - .env
-    volumes:
-      - /tmp:/app/static
-
   mongo:
     image : mongo
     container_name: mongo

@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     oci_database_connection_string: str
     oci_database_name: str
 
-    default_hours: int = 2
+    default_hours: int = 24
 
     app_is_debug: bool = True
     app_logger_name: str = 'sLogger'
