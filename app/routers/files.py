@@ -16,10 +16,10 @@ async def update_file(file_upload: UploadFile = File()):
     try:
         LOGGER.info('uploading file')
         file = await file_upload.read()
-        StorageService().upload_file(
+        uuid = StorageService().upload_file(
             file=file, name=file_upload.filename)
         return {
-            "file_size": len(file)
+            "uuid": uuid
         }
     except Exception:
         LOGGER.critical(traceback.format_exc())

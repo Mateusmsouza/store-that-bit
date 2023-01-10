@@ -18,8 +18,7 @@ class Database:
         file_saved = FileStored(
             filename=filename,
             file_url=url,
-            created_at=datetime.now(),
-            live_until=datetime.now() + timedelta(hours=app_settings.default_hours)
+            created_at=datetime.now()
         )
         file_saved.save()
         return file_saved

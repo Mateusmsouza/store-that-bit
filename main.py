@@ -34,10 +34,14 @@ def settup_logging():
     else:
         fileConfig(PROD_FILE_CONFIG)
 
-if __name__ == '__main__':
-    settup_logging()
+def run_server():
     LOGGER.info(f'starting server {app_settings.server_host} {app_settings.server_port}')
     uvicorn.run(
         app,
         host=app_settings.server_host,
         port=app_settings.server_port)
+
+
+if __name__ == '__main__':
+    settup_logging()
+    run_server()

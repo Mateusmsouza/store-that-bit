@@ -12,7 +12,13 @@ build-image:
 	docker build . -f IaaC/docker/Dockerfile.prod -t store-that-bit --no-cache
 
 dev-environment:
-	docker-compose -f docker-compose.dev.yml up --build -d
+	docker-compose -f docker-compose.dev.yml up --build -d --remove-orphans
 
 dev-watch:
 	docker logs store-that-bit
+
+dev-start:
+	python3 main.py
+
+test-unit:
+	python3 -m unittest discover tests/unit "*_test.py" -v 
