@@ -23,6 +23,6 @@ class Database:
         file_saved.save()
         return file_saved
     
-    def get_file_url(self, filename: str) -> FileStored:
-        file: FileStored = FileStored.objects.get(filename=filename)
+    def get_file_url(self, uuid: str) -> FileStored:
+        file: FileStored = FileStored.objects.get(id=uuid)
         return file

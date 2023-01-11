@@ -24,12 +24,12 @@ async def update_file(file_upload: UploadFile = File()):
     except Exception:
         LOGGER.critical(traceback.format_exc())
 
-@FILE_ROUTER.get('/api/file', tags=['files'])
-async def get_file(filename: str):
+@FILE_ROUTER.get('/api/file/{uuid}', tags=['files'])
+async def get_file(uuid: str) -> str:
     try:
         LOGGER.info('getting file url')
         return {
-            'url': StorageService().get_file(filename=filename)
+            'url': StorageService().get_file(uuid=uuid)
         }
     except DoesNotExist:
         LOGGER.debug('file not found')
