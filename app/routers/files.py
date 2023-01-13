@@ -28,9 +28,7 @@ async def update_file(file_upload: UploadFile = File()):
 async def get_file(uuid: str) -> str:
     try:
         LOGGER.info('getting file url')
-        return {
-            'url': StorageService().get_file(uuid=uuid)
-        }
+        return StorageService().get_file(uuid=uuid)
     except DoesNotExist:
         LOGGER.debug('file not found')
         raise HTTPException(status_code=404)
