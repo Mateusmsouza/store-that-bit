@@ -26,7 +26,10 @@ class StorageService:
 
         return str(file_saved.id)
 
-    def get_file(self, uuid: str) -> str:
+    def get_file(self, uuid: str) -> dict:
         LOGGER.debug(f'getting {uuid}')
         file = Database().get_file_url(uuid=uuid)
-        return file.file_url
+        return {
+            "url": file.file_url,
+            "name": file.filename
+        }
