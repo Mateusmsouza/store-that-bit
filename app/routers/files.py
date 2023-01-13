@@ -25,7 +25,7 @@ async def update_file(file_upload: UploadFile = File()):
         LOGGER.critical(traceback.format_exc())
 
 @FILE_ROUTER.get('/api/file/{uuid}', tags=['files'])
-async def get_file(uuid: str) -> str:
+async def get_file(uuid: str) -> dict:
     try:
         LOGGER.info('getting file url')
         return StorageService().get_file(uuid=uuid)
