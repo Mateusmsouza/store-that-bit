@@ -19,7 +19,7 @@ class StorageServiceTest(unittest.TestCase):
     @patch.object(OciConnection, 'upload')
     @patch.object(OciConnection, '__init__')
     def test_upload_file_should_return_public_url(self, mock_oci_init, mock_oci, mock_database):
-        file_name = 'filename'
+        file_name = 'filename.txt'
         uuid = 'anyfileuuid'
         mock_database.return_value = FileStored(
             id=uuid,

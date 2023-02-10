@@ -16,6 +16,11 @@ class Settings(BaseSettings):
     oci_database_connection_string: str
     oci_database_name: str
 
+    r2_endpoint : str
+    r2_key_id : str
+    r2_access_key : str
+    r2_bucket_name : str
+
     default_hours: int = 24
 
     app_is_debug: bool = True
