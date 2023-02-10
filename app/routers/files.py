@@ -16,11 +16,18 @@ async def update_file(file_upload: UploadFile = File()):
     try:
         LOGGER.info('uploading file')
         file = await file_upload.read()
+        if len(file) > app_settings.app_file_size_limit:
+            raise BufferError
         uuid = StorageService().upload_file(
             file=file, name=file_upload.filename)
         return {
             "uuid": uuid
         }
+    except BufferError:
+        LOGGER.debug("file is too heavy")
+        raise HTTPException(
+            status_code=413,
+            detail="file is too heavy.")
     except Exception:
         LOGGER.critical(traceback.format_exc())
 

@@ -20,6 +20,7 @@ class Settings(BaseSettings):
 
     app_is_debug: bool = True
     app_logger_name: str = 'sLogger'
+    app_file_size_limit: int  = 20971520
     server_host: str = '0.0.0.0'
     server_port: int = 8000
 
